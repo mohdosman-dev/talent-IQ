@@ -1,8 +1,8 @@
-import inngest from "inngest";
+import { Inngest } from "inngest";
 import { connectDB } from "./db.js";
-import { User } from "../models/User.js";
+import User from "../models/User.js";
 
-export const inngestClient = new inngest.Inngest({ id: "talent-iq" });
+export const inngestClient = new Inngest({ id: "talent-iq" });
 
 const syncUser = inngestClient.createFunction(
   { id: "sync-user", event: "clerk/user.created" },
