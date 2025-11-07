@@ -2,10 +2,20 @@ import express from "express";
 import { ENV } from "./lib/env.js";
 import path from "path";
 import { connectDB } from "./lib/db.js";
+import cors from "cors";
+import { inngestClient, inngestFunctions } from "./lib/inngest.js";
+import { serve } from "inngest/express";
 
 const __dirname = path.resolve();
 
 const app = express();
+
+// Middlewares
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(cors({ origin: ENV.CLIENT_URL, credentials: true }));
+
+app.use(serve({ client: inngestClient, functions: inngestFunctions }));
 
 app.get("/health", (req, res) => {
   res.send({ msg: "Hello, TalentIQ Backend!" });
