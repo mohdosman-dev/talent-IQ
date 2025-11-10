@@ -1,6 +1,6 @@
 {
   "name": "backend",
-  "packageManager": "yarn@3.5.0",
+  "packageManager": "npm@9.0.0",
   "main": "src/app.js",
   "private": true,
   "version": "0.0.0",
