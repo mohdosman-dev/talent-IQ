@@ -15,10 +15,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors({ origin: ENV.CLIENT_URL, credentials: true }));
 
-app.use(
-  "/api/inngest",
-  serve({ client: inngestClient, functions: inngestFunctions })
-);
+app.use("/api/inngest", serve({ client: inngestClient, inngestFunctions }));
 
 app.get("/health", (req, res) => {
   res.send({ msg: "Hello, TalentIQ Backend!" });
