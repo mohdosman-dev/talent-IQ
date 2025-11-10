@@ -15,7 +15,7 @@ const syncUser = inngestClient.createFunction(
       event.data;
 
     // Check if user already exists
-    let user = await User.findOne({ clerckId });
+    let user = await User.findOne({ id });
 
     if (!user) {
       // Create new user
@@ -23,11 +23,11 @@ const syncUser = inngestClient.createFunction(
         name: `${first_name || ""} ${last_name || ""}`.trim(),
         email: email_addresses[0]?.email_address || "",
         profileImage: image_url || "",
-        clerckId: id,
+        clerkId: id,
       };
       user = await User.create(newUser);
       await upsertUser({
-        id: user.clerckId.toString(),
+        id: user.clerkId.toString(),
         name: newUser.name,
         profileImage: newUser.profileImage,
       });
@@ -46,7 +46,7 @@ const deleteUser = inngestClient.createFunction(
     const { id } = event.data;
 
     // Delete user
-    await User.findOneAndDelete({ clerckId: id });
+    await User.findOneAndDelete({ clerkId: id });
 
     await deleteUser(id);
 
