@@ -1,6 +1,7 @@
 import { Inngest } from "inngest";
 import { connectDB } from "./db.js";
 import User from "../models/User.js";
+import { upsertUser } from "./stream.js";
 
 export const inngestClient = new Inngest({ id: "talent-iq" });
 
@@ -24,8 +25,12 @@ const syncUser = inngestClient.createFunction(
         profileImage: image_url || "",
         clerckId: id,
       };
-      user = new User(newUser);
-      await user.save();
+      user = await User.create(newUser);
+      await upsertUser({
+        id: user.clerckId.toString(),
+        name: newUser.name,
+        profileImage: newUser.profileImage,
+      });
     }
 
     return user;
@@ -42,6 +47,8 @@ const deleteUser = inngestClient.createFunction(
 
     // Delete user
     await User.findOneAndDelete({ clerckId: id });
+
+    await deleteUser(id);
 
     return { success: true };
   }
