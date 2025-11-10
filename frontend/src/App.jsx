@@ -4,7 +4,8 @@ import "./App.css";
 function App() {
   return (
     <>
-      <SignInButton mode="modal" />
+      <h1>Click here to signup</h1>
+      <SignInButton mode="modal">Sign UP</SignInButton>
     </>
   );
 }
