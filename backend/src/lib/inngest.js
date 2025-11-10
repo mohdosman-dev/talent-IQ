@@ -1,7 +1,7 @@
 import { Inngest } from "inngest";
 import { connectDB } from "./db.js";
 import User from "../models/User.js";
-import { upsertUser } from "./stream.js";
+import { upsertUser, streamDeleteUser } from "./stream.js";
 
 export const inngestClient = new Inngest({ id: "talent-iq" });
 
@@ -48,7 +48,7 @@ const deleteUser = inngestClient.createFunction(
     // Delete user
     await User.findOneAndDelete({ clerkId: id });
 
-    await deleteUser(id);
+    await streamDeleteUser(id);
 
     return { success: true };
   }

@@ -20,7 +20,7 @@ export const upsertUser = async (userData) => {
   }
 };
 
-export const deleteUser = async (userId) => {
+export const streamDeleteUser = async (userId) => {
   try {
     await streamClient.deleteUser(userId, { markMessagesDeleted: true });
   } catch (error) {
