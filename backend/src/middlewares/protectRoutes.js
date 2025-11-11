@@ -11,7 +11,7 @@ export const protectRoutes = [
 
       const user = await User.findOne({ clerkId });
       if (!user) {
-        return res.status(403).send({ error: "Forbidden: User not found" });
+        return res.status(403).send({ message: "Forbidden: User not found" });
       }
 
       // Attach user to request object for downstream use
@@ -19,7 +19,7 @@ export const protectRoutes = [
       return next();
     } catch (error) {
       console.error("Cannot protect the router", error);
-      return res.status(500).send({ error: "Internal Server Error" });
+      return res.status(500).send({ message: "Internal Server Error" });
     }
   },
 ];
