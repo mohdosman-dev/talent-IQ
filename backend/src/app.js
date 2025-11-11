@@ -6,11 +6,15 @@ import cors from "cors";
 import { inngestClient, inngestFunctions } from "./lib/inngest.js";
 import { serve } from "inngest/express";
 
+import { clerkMiddleware } from "@clerk/express";
+import router from "./routes/chatRoutes.js";
+
 const __dirname = path.resolve();
 
 const app = express();
 
 // Middlewares
+app.use(clerkMiddleware());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors({ origin: ENV.CLIENT_URL, credentials: true }));
@@ -20,6 +24,8 @@ app.use(
   "/api/inngest",
   serve({ client: inngestClient, functions: inngestFunctions })
 );
+
+app.use("/api/chat", router);
 
 app.get("/health", (req, res) => {
   res.send({ msg: "Hello, TalentIQ Backend!" });
