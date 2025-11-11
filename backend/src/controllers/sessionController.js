@@ -18,7 +18,7 @@ export async function createSession(req, res) {
 
     // Here you would typically create a session in your database
     const session = await Session.create({
-      hostId: userId,
+      host: userId,
       problem,
       difficulty,
       callId,
@@ -53,7 +53,7 @@ export async function getActiveSessions(req, res) {
       .sort({ createdAt: -1 })
       .limit(20);
     return res.status(200).send({
-      message: "Active session retreived successfully",
+      message: "Active sessions retrieved successfully",
       activeSessions,
     });
   } catch (error) {
@@ -67,7 +67,7 @@ export async function getMyRecentSessions(req, res) {
     const userId = req.user.clerkId;
     const recentSessions = await Session.find({
       status: "completed",
-      $or: [{ hostId: userId }, { participantId: userId }],
+      $or: [{ host: userId }, { participant: userId }],
     })
       .populate("host", "name profileImage email clerkId")
       .populate("participant", "name profileImage email clerkId")
@@ -151,7 +151,7 @@ export async function endSession(req, res) {
       return res.status(404).send({ message: "Session not found" });
     }
 
-    if (session.hostId !== userId) {
+    if (session.host !== userId) {
       return res
         .status(403)
         .send({ message: "Only the host can end the session" });
