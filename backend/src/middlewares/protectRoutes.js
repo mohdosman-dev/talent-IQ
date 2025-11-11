@@ -5,10 +5,9 @@ export const protectRoutes = [
   requireAuth(),
   async (req, res, next) => {
     try {
+      // requireAuth() already blocks unauthenticated requests and
+      // populates req.auth().userId, so we can use it directly here.
       const clerkId = req.auth().userId;
-      if (!clerkId) {
-        return res.status(401).send({ error: "Unauthorized" });
-      }
 
       const user = await User.findOne({ clerkId });
       if (!user) {
