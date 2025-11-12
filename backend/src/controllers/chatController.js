@@ -11,6 +11,6 @@ export async function getStreamToken(req, res) {
     });
   } catch (error) {
     console.error("Error generating Stream token:", error);
-    res.status(500).send({ error: "Failed to generate Stream token" });
+    res.status(500).send({ message: "Failed to generate Stream token" });
   }
 }
