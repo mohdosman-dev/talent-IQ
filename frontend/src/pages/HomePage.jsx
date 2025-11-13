@@ -6,7 +6,7 @@ const HomePage = () => {
     <div>
       <button
         className="btn btn-primary"
-        onClick={() => toast.success("Taoster hotting !!!")}
+        onClick={() => toast.success("Toast working!")}
       >
         Click me
       </button>
