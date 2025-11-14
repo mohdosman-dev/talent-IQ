@@ -31,7 +31,7 @@ const HomePage = () => {
                 Talent IQ
               </span>
               <span className="text-xs text-base-content/60 font-medium -mt-1">
-                Let's code togehter!
+                Code together!
               </span>
             </div>
           </Link>
@@ -56,7 +56,7 @@ const HomePage = () => {
             {/* PRIMARY BADGE */}
             <div className="badge badge-primary badge-lg">
               <ZapIcon className="size-4" />
-              Real-time collabration
+              Real-time collaboration
             </div>
 
             {/* LG TEXT */}
@@ -138,7 +138,7 @@ const HomePage = () => {
         <div className="text-center mb-16">
           <h2 className="text-2xl font-bold mb-4">
             Everything you need to{" "}
-            <span className="text-primary font-mono">Success</span>
+            <span className="text-primary font-mono">Succeed</span>
           </h2>
           <p className="text-lg text-base-content/70 max-w-2xl mx-auto">
             Powerful features to make your coding interviews seamless and
