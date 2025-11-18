@@ -3,7 +3,7 @@ import NavBar from "../components/NavBar";
 import { PROBLEMS } from "../data/problems";
 import { Link } from "react-router";
 import { ChevronRightIcon, Code2Icon } from "lucide-react";
-import { getDiffucltyBadgeClass } from "../lib/utils";
+import { getDifficultyBadgeClass } from "../lib/utils";
 
 const ProblemsPage = () => {
   const problems = Object.values(PROBLEMS);
@@ -26,7 +26,7 @@ const ProblemsPage = () => {
       <div className="max-w-6xl mx-auto px-4 py-12">
         {/* HEADER */}
         <div className="mb-8">
-          <h1 className="text-4xl mb-2 font-bold">Practice Prolems</h1>
+          <h1 className="text-4xl mb-2 font-bold">Practice Problems</h1>
           <p className="text-base-content/70">
             Sharpen your coding skills with our curated list of practice
             problems.
@@ -53,7 +53,7 @@ const ProblemsPage = () => {
                         <div className="flex items-center gap-2 mb-1">
                           <h2 className="text-xl font-bold">{problem.title}</h2>
                           <span
-                            className={`badge ${getDiffucltyBadgeClass(
+                            className={`badge ${getDifficultyBadgeClass(
                               problem.difficulty
                             )}`}
                           >
