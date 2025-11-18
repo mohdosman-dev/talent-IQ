@@ -4,12 +4,13 @@ import ProblemsPage from "./pages/ProblemsPage";
 import { useUser } from "@clerk/clerk-react";
 import { Toaster } from "react-hot-toast";
 import DashboardPage from "./pages/DashboardPage";
+import ProblemDetails from "./pages/ProblemDetails";
 
 function App() {
   const { isSignedIn, isLoaded } = useUser();
 
   if (!isLoaded) return null;
-  
+
   return (
     <>
       <Routes>
@@ -24,6 +25,10 @@ function App() {
         <Route
           path="/problems"
           element={isSignedIn ? <ProblemsPage /> : <Navigate to="/" />}
+        />
+        <Route
+          path="/problems/:id"
+          element={isSignedIn ? <ProblemDetails /> : <Navigate to="/" />}
         />
       </Routes>
 
